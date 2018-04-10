@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name="UsersEntity.getUsername",query="select u from users u")
+        @NamedQuery(name="UsersEntity.getUsername",query="select u from UsersEntity u where u.username=:name")
 })
 public class UsersEntity {
 
