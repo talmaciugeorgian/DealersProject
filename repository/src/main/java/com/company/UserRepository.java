@@ -12,7 +12,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 
 @Stateless
-@Remote(UserRepositoryInterface.class)
 public class UserRepository implements UserRepositoryInterface {
 
     @PersistenceContext(unitName = "myapp")
