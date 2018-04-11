@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "users")
 @NamedQueries({
         @NamedQuery(name="UsersEntity.getUsername",query="select u from UsersEntity u where u.username=:name")
 })
