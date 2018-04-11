@@ -13,19 +13,19 @@
     <h:form>
         <p:panel header="Validate">
             <p:messages autoUpdate="true"/>
-            <h3>Registration</h3>
+            <h3>Authentification</h3>
             <h:panelGrid id="grid" columns="4" cellpadding="5">
                 <p:outputLabel for="username" value="Username: " />
-                <p:inputText id="username"/>
+                <p:inputText id="username" value="#{loginBean.username}"/>
                 <p:message for="username"/>
                 <br /><br />
                 <p:outputLabel for="password" value="Password:" />
-                <p:inputText id="password"/>
+                <p:inputText id="password" value="#{loginBean.password}"/>
                 <p:message for="password"/>
                 <br /><br />
             </h:panelGrid>
-            <p:commandButton value="Login" update="grid" icon="ui-icon-check" action="#{loginBean.validateUsernamePassword}" validateClient="true" style="margin-right:10px"/>
-            <p:commandButton value="Register" update="grid" icon="ui-icon-check" ajax="false" action="register" validateClient="true" style="margin-right:10px"/>
+            <p:commandButton value="Register" update="grid" icon="ui-icon-check" action="#{loginBean.validateUsernamePassword}" validateClient="true" style="margin-right:10px"/>
+            <p:commandButton value="Login" update="grid" icon="ui-icon-check" ajax="false" action="login" validateClient="true" style="margin-right:10px"/>
         </p:panel>
     </h:form>
 </h:body>
