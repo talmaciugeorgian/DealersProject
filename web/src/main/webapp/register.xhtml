@@ -10,23 +10,41 @@
     <title>login</title>
 </h:head>
 <h:body>
-    <h:form>
-        <p:panel header="Validate">
+    <h:form style="text-align:center">
+        <p:panel header="Registration Form">
             <p:messages autoUpdate="true"/>
-            <h3>Registration</h3>
-            <h:panelGrid id="grid" columns="4" cellpadding="5">
-                <p:outputLabel for="username" value="Username: " />
-                <p:inputText id="username" value="#{registerBean.username}"/>
+            <h:panelGrid id="grid" columns="4" cellpadding="5" style="margin:0px auto">
+                <p:outputLabel for="username" value="Username: "/>
+                <p:inputText id="username" value="#{registerBean.username}" required="true"/>
                 <p:message for="username"/>
-                <br /><br />
-                <p:outputLabel for="password" value="Password:" />
-                <p:inputText id="password" value="#{registerBean.password}"/>
+                <br/><br/>
+                <p:outputLabel for="password" value="Password:"/>
+                <p:password id="password" value="#{registerBean.password}" match="pwd2" required="true"/>
                 <p:message for="password"/>
-                <br /><br />
+                <br/><br/>
+                <p:outputLabel for="pwd2" value="Retype Password:"/>
+                <p:password id="pwd2" value="#{registerBean.password}" required="true"/>
+                <p:message for="pwd2"/>
+                <br/><br/>
+                <p:outputLabel for="firstName" value="First Name:" required="true"/>
+                <p:inputText id="firstName" value="#{registerBean.firstName}"/>
+                <p:message for="firstName"/>
+                <br/><br/>
+                <p:outputLabel for="lastName" value="Last Name:" required="true"/>
+                <p:inputText id="lastName" value="#{registerBean.lastName}"/>
+                <p:message for="lastName"/>
+                <br/><br/>
+                <p:outputLabel for="email" value="email:" required="true"/>
+                <p:inputText id="email" value="#{registerBean.email}"/>
+                <p:message for="email"/>
+                <br/><br/>
             </h:panelGrid>
-            <p:commandButton value="Register" update="grid" icon="ui-icon-check" action="#{registerBean.validateUser}" validateClient="true" style="margin-right:10px"/>
-            <p:commandButton value="Login" update="grid" icon="ui-icon-check" ajax="false" action="login" validateClient="true" style="margin-right:10px"/>
+            <p:commandButton value="Register" update="grid" icon="ui-icon-check"
+                             action="#{registerBean.validateUser}" validateClient="true" style="margin-right:10px"/>
+            <p:commandButton value="Back" update="grid" icon="ui-icon-check" ajax="false" action="login"
+                             validateClient="true" style="margin-right:10px"/>
         </p:panel>
+
     </h:form>
 </h:body>
 

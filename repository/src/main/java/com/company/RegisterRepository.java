@@ -6,7 +6,6 @@ import entities.UsersEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
 
 @Stateless
 public class RegisterRepository implements RegisterRepositoryInterface{
@@ -15,16 +14,14 @@ public class RegisterRepository implements RegisterRepositoryInterface{
     private EntityManager em;
 
     public UsersEntity convert(User user){
-        return new UsersEntity(user.getUsername(),user.getPassword());
+        return new UsersEntity(user.getUsername(),user.getPassword(),user.getFirstName(),user.getLastName(),user.getEmail());
     }
 
-    public User setUser(String username,String password) {
-        User temp_user=new User(username,password);
+    public User setUser(String username, String password, String firstName, String lastName, String email) {
+        User temp_user=new User(username,password,firstName,lastName,email);
         UsersEntity userDto=convert(temp_user);
         em.persist(userDto);
         em.flush();
-
-        return null;
+        return temp_user;
     }
-
 }
