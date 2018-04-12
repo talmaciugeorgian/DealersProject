@@ -56,7 +56,5 @@
             </plugin>
         </plugins>
 
-        <finalName>myFirstApp</finalName>
-
     </build>
 </project>

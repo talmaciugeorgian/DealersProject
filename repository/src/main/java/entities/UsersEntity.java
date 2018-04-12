@@ -19,6 +19,14 @@ public class UsersEntity {
     @Column(name = "password")
     private String password;
 
+    public UsersEntity() {
+    }
+
+    public UsersEntity(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
