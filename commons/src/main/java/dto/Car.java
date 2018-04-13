@@ -6,10 +6,14 @@ import java.util.Date;
 public class Car {
 
     public enum Mark{
-        SEDAN,
-        ALLWHEELDRIVE,
-        PICKUP,
-        CONVERTABLE
+        BMW,
+        SKODA,
+        KIA,
+        AUDI,
+        JAGUAR,
+        PORCHE,
+        FORD,
+        VW
     }
 
     public enum Condition{

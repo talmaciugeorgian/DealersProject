@@ -7,24 +7,51 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Authendication is successfull!</title>
+    <title>Create new sale!</title>
 </h:head>
 <h:body>
     <h:form style="text-align:center">
         <p:panel header="Create Sale">
-            <p>Welcome</p>
+            <h:panelGrid id="grid" columns="4" cellpadding="5" style="margin:0px auto">
 
-            <div class="field">
-                <h:outputLabel for="questionStatus" value="Status" />
-                <h:selectOneMenu id="questionStatus">
-                    <f:selectItem itemLabel="Submitted" itemValue="0" />
-                    <f:selectItem itemLabel="Rejected" itemValue="1" />
-                    <f:selectItem itemLabel="Approved" itemValue="2" />
-                </h:selectOneMenu>
-                <hr />
-            </div>
+                <!--value="#{registerCarBean.name}"-->
 
+                <p:outputLabel for="name" value="Name : "/>
+                <p:inputText id="name"/>
+                <p:message for="name"/>
+
+                <p:outputLabel for="brand" value="Bame : "/>
+                <p:selectOneMenu id="brand">
+                    <f:selectItem itemLabel="AUDI" itemValue="AUDI"/>
+                    <f:selectItem itemLabel="VW" itemValue="VW"/>
+                    <f:selectItem itemLabel="BMW" itemValue="BMW"/>
+                    <f:selectItem itemLabel="NISSAN" itemValue="NISSAN"/>
+                    <f:selectItem itemLabel="FORD" itemValue="FORD"/>
+                    <f:selectItem itemLabel="KIA" itemValue="KIA"/>
+                </p:selectOneMenu>
+                <br/><br/>
+
+                <p:outputLabel for="price" value="Price : "/>
+                <p:inputText id="price" value="#{registerCarBean.price}"/>
+                <p:message for="price"/>
+                <br/><br/>
+
+                <p:outputLabel for="condition" value="Condition : "/>
+                <p:selectOneMenu id="condition">
+                    <f:selectItem itemLabel="used" itemValue="USED"/>
+                    <f:selectItem itemLabel="new" itemValue="NEW"/>
+                </p:selectOneMenu>
+                <br/><br/>
+
+                <p:outputLabel for="registrationDate" value="Registration Date : "/>
+                <p:inputText id="registrationDate" value="#{registerCarBean.registrationDate}"/>
+                <p:message for="registrationDate"/>
+                <br/><br/>
+
+            </h:panelGrid>
             <p:commandButton value="Logout" update="grid" icon="ui-icon-check" ajax="false" action="login"
+                             validateClient="true" style="margin-right:10px"/>
+            <p:commandButton value="Submit" update="grid" icon="ui-icon-check" ajax="false" action="userHomePage"
                              validateClient="true" style="margin-right:10px"/>
         </p:panel>
     </h:form>
