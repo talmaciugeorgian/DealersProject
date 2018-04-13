@@ -15,7 +15,7 @@
             <p:messages autoUpdate="true"/>
             <h:panelGrid id="grid" columns="4" cellpadding="5" style="margin:0px auto">
                 <p:outputLabel for="username" value="Username: "/>
-                <p:inputText id="username" value="#{registerBean.username}" required="true"/>
+                <p:inputText id="username" value="#{registerBean.username}"/>
                 <p:message for="username"/>
                 <br/><br/>
                 <p:outputLabel for="password" value="Password:"/>
@@ -26,17 +26,36 @@
                 <p:password id="pwd2" value="#{registerBean.password}" required="true"/>
                 <p:message for="pwd2"/>
                 <br/><br/>
-                <p:outputLabel for="firstName" value="First Name:" required="true"/>
+                <p:outputLabel for="firstName" value="First Name:"/>
                 <p:inputText id="firstName" value="#{registerBean.firstName}"/>
                 <p:message for="firstName"/>
                 <br/><br/>
-                <p:outputLabel for="lastName" value="Last Name:" required="true"/>
+                <p:outputLabel for="lastName" value="Last Name:"/>
                 <p:inputText id="lastName" value="#{registerBean.lastName}"/>
                 <p:message for="lastName"/>
                 <br/><br/>
-                <p:outputLabel for="email" value="email:" required="true"/>
+                <p:outputLabel for="email" value="email:"/>
                 <p:inputText id="email" value="#{registerBean.email}"/>
                 <p:message for="email"/>
+                <br/><br/>
+            </h:panelGrid>
+            <h3>Address</h3>
+            <h:panelGrid id="grid2" columns="4" cellpadding="5" style="margin:0px auto">
+                <p:outputLabel for="street" value="Street :"/>
+                <p:inputText id="street" value="#{registerBean.street}"/>
+                <p:message for="street"/>
+                <br/><br/>
+                <p:outputLabel for="postal_code" value="Postal_code:"/>
+                <p:inputText id="postal_code" value="#{registerBean.postal_code}"/>
+                <p:message for="postal_code"/>
+                <br/><br/>
+                <p:outputLabel for="city" value="City:"/>
+                <p:inputText id="city" value="#{registerBean.city}"/>
+                <p:message for="city"/>
+                <br/><br/>
+                <p:outputLabel for="phone" value="Phone:"/>
+                <p:inputText id="phone" value="#{registerBean.phone}"/>
+                <p:message for="phone"/>
                 <br/><br/>
             </h:panelGrid>
             <p:commandButton value="Register" update="grid" icon="ui-icon-check"

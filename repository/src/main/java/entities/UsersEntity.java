@@ -1,5 +1,7 @@
 package entities;
 
+import dto.Address;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ import javax.persistence.*;
 public class UsersEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -28,15 +31,20 @@ public class UsersEntity {
     @Column(name = "email")
     private String email;
 
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "address")
+    private AddressEntity address;
+
     public UsersEntity() {
     }
 
-    public UsersEntity(String username, String password, String firstName, String lastName, String email) {
+    public UsersEntity(String username, String password, String firstName, String lastName, String email, AddressEntity address) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.address = address;
     }
 
     public int getId() {
@@ -85,5 +93,14 @@ public class UsersEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    public AddressEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressEntity address) {
+        this.address = address;
     }
 }

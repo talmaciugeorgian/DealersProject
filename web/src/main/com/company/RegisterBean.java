@@ -1,6 +1,7 @@
 package com.company;
 
 
+import dto.Address;
 import dto.User;
 
 import javax.ejb.EJB;
@@ -15,8 +16,14 @@ public class RegisterBean {
     private String firstName;
     private String lastName;
     private String email;
+    private String street;
+    private String postal_code;
+    private String city;
+    private String phone;
 
+    private Address address;
     private User user;
+
     @EJB
     private UserInterface userService;
 
@@ -28,8 +35,10 @@ public class RegisterBean {
      //   if(user.getUsername().equals(username)) {
       //      return "failed";
        // }else {
-            registerService.createUser(username,password,firstName,lastName,email);
-           return "userPage";
+        address=new Address(street,postal_code,city,phone);
+        user=new User(username,password,firstName,lastName,email,address);
+        registerService.createUser(user);
+        return "userPage";
      //   }
     }
 
@@ -70,5 +79,37 @@ public class RegisterBean {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getPostal_code() {
+        return postal_code;
+    }
+
+    public void setPostal_code(String postal_code) {
+        this.postal_code = postal_code;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

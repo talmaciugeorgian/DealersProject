@@ -1,20 +1,17 @@
 package entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import dto.User;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name = "adress")
-public class AdressEntity {
+@Table(name = "address")
+public class AddressEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
     private String addressId;
-
-    @Column(name = "user_id")
-    private String userId;
 
     @Column(name = "street")
     private String street;
@@ -28,20 +25,14 @@ public class AdressEntity {
     @Column(name = "phone")
     private String phone;
 
-    public String getAddressId() {
-        return addressId;
+    public AddressEntity() {
     }
 
-    public void setAddressId(String addressId) {
-        this.addressId = addressId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public AddressEntity(String street, String postalCode, String city, String phone) {
+        this.street = street;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.phone = phone;
     }
 
     public String getStreet() {
