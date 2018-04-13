@@ -63,11 +63,10 @@
         </dependency>
 
         <!--
-        https://mvnrepository.com/artifact/org.primefaces/showcase
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>showcase</artifactId>
-            <version>5.3</version>
+            <version>6.2</version>
         </dependency>
         -->
 
@@ -77,6 +76,16 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <!--
+    <repositories>
+        <repository>
+            <id>prime-repo</id>
+            <name>Prime Repo</name>
+            <url>http://repository.primefaces.org</url>
+        </repository>
+    </repositories>
+    -->
 
     <build>
         <finalName>web</finalName>

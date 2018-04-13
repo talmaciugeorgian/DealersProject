@@ -38,7 +38,7 @@ public class RegisterBean {
         address=new Address(street,postal_code,city,phone);
         user=new User(username,password,firstName,lastName,email,address);
         registerService.createUser(user);
-        return "userPage";
+        return "redirectPage";
      //   }
     }
 

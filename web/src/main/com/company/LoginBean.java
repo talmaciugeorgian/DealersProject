@@ -26,7 +26,7 @@ public class LoginBean {
         user= userService.checkUser(username);
         if(user.getPassword().equals(password)){
             HttpSession session=SessionUtils.getSession();
-            return "carsPage";
+            return "userHomePage";
         } else {
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN,"Incorrect Username and Password","Please enter correct username and Password "));
             return "login";
