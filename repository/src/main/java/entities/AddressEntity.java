@@ -16,7 +16,7 @@ public class AddressEntity {
     @Column(name = "street")
     private String street;
 
-    @Column(name="postal_code")
+    @Column(name = "postal_code")
     private String postalCode;
 
     @Column(name = "city")

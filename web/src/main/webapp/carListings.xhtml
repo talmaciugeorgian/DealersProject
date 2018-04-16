@@ -14,25 +14,23 @@
         <p:panel header="Listings">
             <p>Welcome</p>
 
-
             <h:dataTable value="#{carBean.carList}" var="car" border="1">
-
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="CarName"/>
-                </f:facet>
-                #{car.name}
-            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="CarName"/>
+                    </f:facet>
+                    #{car.name}
+                </h:column>
                 <h:column>
                     <f:facet name="header">Brand
                     </f:facet>
-                    <h:outputText value="#{car.brand}" />
+                    <h:outputText value="#{car.brand}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Model"/>
                     </f:facet>
-                    <h:outputText value="#{car.model}" />
+                    <h:outputText value="#{car.model}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -52,9 +50,7 @@
                     </f:facet>
                     #{car.registrationDate}
                 </h:column>
-
             </h:dataTable>
-
 
             <p:commandButton value="Back" update="grid" icon="ui-icon-check" ajax="false" action="userHomePage"
                              validateClient="true" style="margin-right:10px"/>

@@ -2,6 +2,7 @@ package com.company;
 
 import dto.User;
 import entities.UsersEntity;
+
 import javax.ejb.Local;
 
 @Local

@@ -30,16 +30,16 @@ public class RegisterBean {
     @EJB
     private RegisterInterface registerService;
 
-    public String validateUser(){
-     //   user= userService.checkUser(username);
-     //   if(user.getUsername().equals(username)) {
-      //      return "failed";
-       // }else {
-        address=new Address(street,postal_code,city,phone);
-        user=new User(username,password,firstName,lastName,email,address);
+    public String validateUser() {
+        //   user= userService.checkUser(username);
+        //   if(user.getUsername().equals(username)) {
+        //      return "failed";
+        // }else {
+        address = new Address(street, postal_code, city, phone);
+        user = new User(username, password, firstName, lastName, email, address);
         registerService.createUser(user);
         return "redirectPage";
-     //   }
+        //   }
     }
 
     public String getUsername() {
@@ -61,6 +61,7 @@ public class RegisterBean {
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

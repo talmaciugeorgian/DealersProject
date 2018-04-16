@@ -1,6 +1,9 @@
 package com.company;
 
 import dto.Car;
+import enums.Brand;
+import enums.Color;
+import enums.State;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -16,10 +19,10 @@ public class CarBean {
     private int id;
     private String name;
     private String model;
-    private Car.Brand brand;
-    private Car.Color color;
+    private Brand brand;
+    private Color color;
     private int price;
-    private Car.State state;
+    private State state;
     private Date registrationDate;
     private Car car;
     private List<Car> carList;
@@ -28,15 +31,15 @@ public class CarBean {
     private CarServiceInterface carService;
 
 
-    public String addCar(){
-        car=new Car(name,brand,model,color,price,state,registrationDate);
+    public String addCar() {
+        car = new Car(name, brand, model, color, price, state, registrationDate);
         carService.createCar(car);
         return "carRedirectPage";
     }
 
-    public String getCarListings(){
-        carList=new ArrayList<Car>();
-        carList=carService.checkCar();
+    public String getCarListings() {
+        carList = new ArrayList<Car>();
+        carList = carService.checkCar();
         return "carListings";
     }
 
@@ -56,19 +59,19 @@ public class CarBean {
         this.model = model;
     }
 
-    public Car.Brand getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(Car.Brand brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public Car.Color getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(Car.Color color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
@@ -80,11 +83,11 @@ public class CarBean {
         this.price = price;
     }
 
-    public Car.State getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(Car.State state) {
+    public void setState(State state) {
         this.state = state;
     }
 

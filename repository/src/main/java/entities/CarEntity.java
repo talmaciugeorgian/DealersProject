@@ -1,6 +1,9 @@
 package entities;
 
 import dto.Car;
+import enums.Brand;
+import enums.Color;
+import enums.State;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,7 +11,7 @@ import java.util.Date;
 @Entity
 @Table(name = "cars")
 @NamedQueries({
-        @NamedQuery(name="CarEntity.getCar",query="select c from CarEntity c")
+        @NamedQuery(name = "CarEntity.getCar", query = "select c from CarEntity c")
 })
 public class CarEntity {
 
@@ -19,31 +22,31 @@ public class CarEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name="model")
+    @Column(name = "model")
     private String model;
 
-    @Column(name="brand")
+    @Column(name = "brand")
     @Enumerated(EnumType.STRING)
-    private Car.Brand brand;
+    private Brand brand;
 
     @Column(name = "color")
     @Enumerated(EnumType.STRING)
-    private Car.Color color;
+    private Color color;
 
     @Column(name = "price")
     private int price;
 
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
-    private Car.State state;
+    private State state;
 
-    @Column(name="registration_date")
+    @Column(name = "registration_date")
     private Date registrationDate;
 
     public CarEntity() {
     }
 
-    public CarEntity(String name, Car.Brand brand, String model, Car.Color color, int price, Car.State state, Date registrationDate) {
+    public CarEntity(String name, Brand brand, String model, Color color, int price, State state, Date registrationDate) {
         this.name = name;
         this.model = model;
         this.brand = brand;
@@ -77,19 +80,19 @@ public class CarEntity {
         this.model = model;
     }
 
-    public Car.Brand getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(Car.Brand brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public Car.Color getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(Car.Color color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
@@ -101,11 +104,11 @@ public class CarEntity {
         this.price = price;
     }
 
-    public Car.State getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(Car.State state) {
+    public void setState(State state) {
         this.state = state;
     }
 

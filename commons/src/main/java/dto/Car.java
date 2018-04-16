@@ -1,35 +1,12 @@
 package dto;
 
-import javax.persistence.*;
+import enums.Brand;
+import enums.Color;
+import enums.State;
+
 import java.util.Date;
 
 public class Car {
-
-    public enum Brand{
-        BMW,
-        SKODA,
-        KIA,
-        AUDI,
-        JAGUAR,
-        PORCHE,
-        FORD,
-        VW
-    }
-
-    public enum State{
-        NEW,
-        USED
-    }
-
-    public enum Color{
-        RED,
-        BLACK,
-        BLUE,
-        YELLOW,
-        WHITE,
-        GREEN
-    }
-
     private int id;
     private String name;
     private Brand brand;
@@ -39,7 +16,7 @@ public class Car {
     private State state;
     private Date registrationDate;
 
-    public Car(String name, Brand brand,String model, Color color, int price, State state, Date registrationDate) {
+    public Car(String name, Brand brand, String model, Color color, int price, State state, Date registrationDate) {
         this.name = name;
         this.model = model;
         this.brand = brand;

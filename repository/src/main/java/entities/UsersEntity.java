@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @NamedQueries({
-        @NamedQuery(name="UsersEntity.getUsername",query="select u from UsersEntity u where u.username=:name")
+        @NamedQuery(name = "UsersEntity.getUsername", query = "select u from UsersEntity u where u.username=:name")
 })
 public class UsersEntity {
 
@@ -31,7 +31,7 @@ public class UsersEntity {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address")
     private AddressEntity address;
 

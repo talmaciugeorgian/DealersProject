@@ -18,7 +18,7 @@ public class CarService implements CarServiceInterface {
     }
 
     public List<Car> checkCar() {
-        List<Car> temp_car=carRepository.getCar();
+        List<Car> temp_car = carRepository.getCar();
         return temp_car;
     }
 }

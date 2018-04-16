@@ -14,17 +14,20 @@
         <p:panel header="Authentification">
             <p:messages autoUpdate="true"/>
             <h:panelGrid id="grid" columns="4" cellpadding="5" style="margin:0px auto">
-                <p:outputLabel for="username" value="Username: " />
+                <p:outputLabel for="username" value="Username: "/>
                 <p:inputText id="username" value="#{loginBean.username}"/>
                 <p:message for="username"/>
-                <br /><br />
+                <br/><br/>
                 <p:outputLabel for="password" value="Password:"/>
                 <p:inputText id="password" value="#{loginBean.password}"/>
                 <p:message for="password"/>
-                <br /><br />
+                <br/><br/>
             </h:panelGrid>
-            <p:commandButton value="Login" update="grid" icon="ui-icon-check" action="#{loginBean.validateUsernamePassword}" validateClient="true" style="margin-right:10px"/>
-            <p:commandButton value="Register" update="grid" icon="ui-icon-check" ajax="false" action="register" validateClient="true" style="margin-right:10px"/>
+            <p:commandButton value="Login" update="grid" icon="ui-icon-check"
+                             action="#{loginBean.validateUsernamePassword}" validateClient="true"
+                             style="margin-right:10px"/>
+            <p:commandButton value="Register" update="grid" icon="ui-icon-check" ajax="false" action="register"
+                             validateClient="true" style="margin-right:10px"/>
         </p:panel>
     </h:form>
 </h:body>

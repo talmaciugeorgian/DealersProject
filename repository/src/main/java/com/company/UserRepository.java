@@ -18,13 +18,13 @@ public class UserRepository implements UserRepositoryInterface {
     private EntityManager em;
 
 
-    public User convert(UsersEntity usersEntity){
-        return new User(usersEntity.getId(),usersEntity.getUsername(),usersEntity.getPassword());
+    public User convert(UsersEntity usersEntity) {
+        return new User(usersEntity.getId(), usersEntity.getUsername(), usersEntity.getPassword());
     }
 
     public User getUser(String username) {
-        UsersEntity user= (UsersEntity) em.createNamedQuery("UsersEntity.getUsername").setParameter("name",username).getSingleResult();
-        User userDto=convert(user);
+        UsersEntity user = (UsersEntity) em.createNamedQuery("UsersEntity.getUsername").setParameter("name", username).getSingleResult();
+        User userDto = convert(user);
         return userDto;
     }
 }

@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 import java.io.IOException;
+
 import com.company.util.SessionUtils;
 import dto.User;
 
@@ -22,22 +23,22 @@ public class LoginBean {
     private UserInterface userService;
 
 
-    public String validateUsernamePassword() throws IOException{
-        user= userService.checkUser(username);
-        if(user.getPassword().equals(password)){
-            HttpSession session=SessionUtils.getSession();
+    public String validateUsernamePassword() throws IOException {
+        user = userService.checkUser(username);
+        if (user.getPassword().equals(password)) {
+            HttpSession session = SessionUtils.getSession();
             return "userHomePage";
         } else {
-            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN,"Incorrect Username and Password","Please enter correct username and Password "));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Incorrect Username and Password", "Please enter correct username and Password "));
             return "login";
         }
     }
 
-    public String login(){
+    public String login() {
         return "logout";
     }
 
-    public String logout(){
+    public String logout() {
         return "login";
     }
 
