@@ -12,10 +12,10 @@
 <h:body>
     <h:form style="text-align:center">
         <p:panel header="Welcome">
-            <p>Welcome #{loginBean.username}</p>
+            <p>Welcome</p>
             <p:commandButton value="Create new sale" update="grid" icon="ui-icon-check" ajax="false" action="newCarPage"
                              validateClient="true" style="margin-right:10px"/>
-            <p:commandButton value="Browse cars" update="grid" icon="ui-icon-check" ajax="false" action="browseCarsPage"
+            <p:commandButton value="Browse cars" update="grid" icon="ui-icon-check" ajax="false" action="#{carBean.getCarListings}"
                              validateClient="true" style="margin-right:10px"/>
             <p:commandButton value="Logout" update="grid" icon="ui-icon-check" ajax="false" action="login"
                              validateClient="true" style="margin-right:10px"/>

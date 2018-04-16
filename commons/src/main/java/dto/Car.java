@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Car {
 
-    public enum Mark{
+    public enum Brand{
         BMW,
         SKODA,
         KIA,
@@ -16,27 +16,36 @@ public class Car {
         VW
     }
 
-    public enum Condition{
+    public enum State{
         NEW,
         USED
     }
 
+    public enum Color{
+        RED,
+        BLACK,
+        BLUE,
+        YELLOW,
+        WHITE,
+        GREEN
+    }
+
     private int id;
     private String name;
+    private Brand brand;
     private String model;
-    private Mark mark;
-    private String color;
+    private Color color;
     private int price;
-    private Condition condition;
+    private State state;
     private Date registrationDate;
 
-    public Car(String name, String model, Mark mark, String color, int price, Condition condition, Date registrationDate) {
+    public Car(String name, Brand brand,String model, Color color, int price, State state, Date registrationDate) {
         this.name = name;
         this.model = model;
-        this.mark = mark;
+        this.brand = brand;
         this.color = color;
         this.price = price;
-        this.condition = condition;
+        this.state = state;
         this.registrationDate = registrationDate;
     }
 
@@ -64,19 +73,19 @@ public class Car {
         this.model = model;
     }
 
-    public Mark getMark() {
-        return mark;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setMark(Mark mark) {
-        this.mark = mark;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
@@ -88,12 +97,12 @@ public class Car {
         this.price = price;
     }
 
-    public Condition getCondition() {
-        return condition;
+    public State getState() {
+        return state;
     }
 
-    public void setCondition(Condition condition) {
-        this.condition = condition;
+    public void setCondition(State state) {
+        this.state = state;
     }
 
     public Date getRegistrationDate() {

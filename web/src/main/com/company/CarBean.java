@@ -1,64 +1,43 @@
-package entities;
+package com.company;
 
 import dto.Car;
 
-import javax.persistence.*;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@Entity
-@Table(name = "cars")
-@NamedQueries({
-        @NamedQuery(name="CarEntity.getCar",query="select c from CarEntity c")
-})
-public class CarEntity {
-
-    @Id
-    @Column(name = "id")
+@ManagedBean(name = "carBean", eager = true)
+@SessionScoped
+public class CarBean {
     private int id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name="model")
     private String model;
-
-    @Column(name="brand")
-    @Enumerated(EnumType.STRING)
     private Car.Brand brand;
-
-    @Column(name = "color")
-    @Enumerated(EnumType.STRING)
     private Car.Color color;
-
-    @Column(name = "price")
     private int price;
-
-    @Column(name = "state")
-    @Enumerated(EnumType.STRING)
     private Car.State state;
-
-    @Column(name="registration_date")
     private Date registrationDate;
+    private Car car;
+    private List<Car> carList;
 
-    public CarEntity() {
+    @EJB
+    private CarServiceInterface carService;
+
+
+    public String addCar(){
+        car=new Car(name,brand,model,color,price,state,registrationDate);
+        carService.createCar(car);
+        return "carRedirectPage";
     }
 
-    public CarEntity(String name, Car.Brand brand, String model, Car.Color color, int price, Car.State state, Date registrationDate) {
-        this.name = name;
-        this.model = model;
-        this.brand = brand;
-        this.color = color;
-        this.price = price;
-        this.state = state;
-        this.registrationDate = registrationDate;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public String getCarListings(){
+        carList=new ArrayList<Car>();
+        carList=carService.checkCar();
+        return "carListings";
     }
 
     public String getName() {
@@ -117,4 +96,35 @@ public class CarEntity {
         this.registrationDate = registrationDate;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public CarServiceInterface getCarService() {
+        return carService;
+    }
+
+    public void setCarService(CarServiceInterface carService) {
+        this.carService = carService;
+    }
+
+    public List<Car> getCarList() {
+        return carList;
+    }
+
+    public void setCarList(List<Car> carList) {
+        this.carList = carList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

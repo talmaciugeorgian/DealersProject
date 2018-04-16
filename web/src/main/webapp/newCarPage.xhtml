@@ -12,46 +12,65 @@
 <h:body>
     <h:form style="text-align:center">
         <p:panel header="Create Sale">
-            <h:panelGrid id="grid" columns="4" cellpadding="5" style="margin:0px auto">
+            <!--  <h:panelGrid id="grid" columns="4" cellpadding="5" style="margin:0px auto"> -->
 
-                <!--value="#{registerCarBean.name}"-->
+                 <!--value="#{registerCarBean.name}"-->
 
                 <p:outputLabel for="name" value="Name : "/>
-                <p:inputText id="name"/>
+                <p:inputText id="name" value="#{carBean.name}"/>
                 <p:message for="name"/>
+                <br/><br/>
 
-                <p:outputLabel for="brand" value="Bame : "/>
-                <p:selectOneMenu id="brand">
+                <p:outputLabel for="brand" value="Brand : "/>
+                <p:selectOneMenu id="brand" value="#{carBean.brand}">
                     <f:selectItem itemLabel="AUDI" itemValue="AUDI"/>
                     <f:selectItem itemLabel="VW" itemValue="VW"/>
                     <f:selectItem itemLabel="BMW" itemValue="BMW"/>
-                    <f:selectItem itemLabel="NISSAN" itemValue="NISSAN"/>
+                    <f:selectItem itemLabel="PORCHE" itemValue="PORCHE"/>
                     <f:selectItem itemLabel="FORD" itemValue="FORD"/>
                     <f:selectItem itemLabel="KIA" itemValue="KIA"/>
+                    <f:selectItem itemLabel="SKODA" itemValue="SKODA"/>
+                    <f:selectItem itemLabel="JAGUAR" itemValue="JAGUAR"/>
                 </p:selectOneMenu>
                 <br/><br/>
 
+                 <p:outputLabel for="model" value="Model : "/>
+                  <p:inputText id="model" value="#{carBean.name}"/>
+                 <p:message for="model"/>
+                  <br/><br/>
+
+            <p:outputLabel for="color" value="Color : "/>
+            <p:selectOneMenu id="color" value="#{carBean.color}">
+                <f:selectItem itemLabel="RED" itemValue="RED"/>
+                <f:selectItem itemLabel="BLACK" itemValue="BLACK"/>
+                <f:selectItem itemLabel="BLUE" itemValue="BLUE"/>
+                <f:selectItem itemLabel="YELLOW" itemValue="YELLOW"/>
+                <f:selectItem itemLabel="WHITE" itemValue="WHITE"/>
+                <f:selectItem itemLabel="GREEN" itemValue="GREEN"/>
+            </p:selectOneMenu>
+            <br/><br/>
+
                 <p:outputLabel for="price" value="Price : "/>
-                <p:inputText id="price" value="#{registerCarBean.price}"/>
+                <p:inputText id="price" value="#{carBean.price}"/>
                 <p:message for="price"/>
                 <br/><br/>
 
-                <p:outputLabel for="condition" value="Condition : "/>
-                <p:selectOneMenu id="condition">
-                    <f:selectItem itemLabel="used" itemValue="USED"/>
-                    <f:selectItem itemLabel="new" itemValue="NEW"/>
+                <p:outputLabel for="state" value="Condition : "/>
+                <p:selectOneMenu id="state" value="#{carBean.state}">
+                    <f:selectItem itemLabel="USED" itemValue="USED"/>
+                    <f:selectItem itemLabel="NEW" itemValue="NEW"/>
                 </p:selectOneMenu>
                 <br/><br/>
 
                 <p:outputLabel for="registrationDate" value="Registration Date : "/>
-                <p:inputText id="registrationDate" value="#{registerCarBean.registrationDate}"/>
+                <p:inputText id="registrationDate" value="#{carBean.registrationDate}"><f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime></p:inputText>
                 <p:message for="registrationDate"/>
                 <br/><br/>
 
-            </h:panelGrid>
-            <p:commandButton value="Logout" update="grid" icon="ui-icon-check" ajax="false" action="login"
+           <!-- </h:panelGrid> -->
+            <p:commandButton value="Back" update="grid" icon="ui-icon-check" ajax="false" action="userHomePage"
                              validateClient="true" style="margin-right:10px"/>
-            <p:commandButton value="Submit" update="grid" icon="ui-icon-check" ajax="false" action="userHomePage"
+            <p:commandButton value="Submit" update="grid" icon="ui-icon-check" ajax="false" action="#{carBean.addCar}"
                              validateClient="true" style="margin-right:10px"/>
         </p:panel>
     </h:form>
