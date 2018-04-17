@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Cars">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Car" type="CarGenerated" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+        <xs:complexType name="CarGenerated">
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="brand" type="Brandgenerated"/>
+                <xs:element name="model" type="xs:string"/>
+                <xs:element name="color" type="ColorGenerated"/>
+                <xs:element name="price" type="xs:int"/>
+                <xs:element name="state" type="StateGenerated"/>
+                <xs:element name="reqistrationDate" type="xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+
+
+    <xs:simpleType name="Brandgenerated">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BMW"/>
+            <xs:enumeration value="SKODA"/>
+            <xs:enumeration value="KIA"/>
+            <xs:enumeration value="AUDI"/>
+            <xs:enumeration value="JAGUAR"/>
+            <xs:enumeration value="PORCHE"/>
+            <xs:enumeration value="FORD"/>
+            <xs:enumeration value="VW"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ColorGenerated">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RED"/>
+            <xs:enumeration value="BLACK"/>
+            <xs:enumeration value="BLUE"/>
+            <xs:enumeration value="YELLOW"/>
+            <xs:enumeration value="WHITE"/>
+            <xs:enumeration value="GREEN"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="StateGenerated">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="USED"/>
+            <xs:enumeration value="NEW"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Cars>
+    <Car>
+        <name>testCar1</name>
+        <brand>BMW</brand>
+        <model>x3</model>
+        <color>RED</color>
+        <price>50000</price>
+        <state>NEW</state>
+        <registrationDate>2016-02-22</registrationDate>
+    </Car>
+    <Car>
+        <name>testCar2</name>
+        <brand>AUDI</brand>
+        <model>q5</model>
+        <color>WHITE</color>
+        <price>60000</price>
+        <state>NEW</state>
+        <registrationDate>2014-08-22</registrationDate>
+    </Car>
+    <Car>
+        <name>testCar3</name>
+        <brand>SKODA</brand>
+        <model>octavia</model>
+        <color>BLUE</color>
+        <price>4000</price>
+        <state>USED</state>
+        <registrationDate>2008-05-28</registrationDate>
+    </Car>
+</Cars>
