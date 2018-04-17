@@ -2,10 +2,13 @@ package com.company;
 
 import dto.Car;
 import entities.CarEntity;
+import generated.CarGenerated;
+import generated.Cars;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,6 +18,18 @@ public class CarRepository implements CarRepositoryInterface {
 
     @PersistenceContext(unitName = "myapp")
     private EntityManager em;
+
+    public java.util.Date asDate(XMLGregorianCalendar xgc) {
+        if (xgc == null) {
+            return null;
+        } else {
+            return xgc.toGregorianCalendar().getTime();
+        }
+    }
+
+    public Car convertImportToCar(CarGenerated car){
+        return new Car(car.getName(),car.getBrand(),car.getModel(),car.getColor(),car.getPrice(),car.getState(),asDate(car.getReqistrationDate()));
+    }
 
     public CarEntity convert(Car car) {
         return new CarEntity(car.getName(), car.getBrand(), car.getModel(), car.getColor(), car.getPrice(), car.getState(), car.getRegistrationDate());
@@ -43,5 +58,18 @@ public class CarRepository implements CarRepositoryInterface {
         List<CarEntity> carEntity = (List<CarEntity>) em.createNamedQuery("CarEntity.getCar", CarEntity.class).getResultList();
         List<Car> car = convertDtoToCar(carEntity);
         return car;
+    }
+
+    public void setCars(List<Car> cars){
+        List<CarEntity> carsEntity = new ArrayList<CarEntity>();
+        Iterator<Car> it = cars.iterator();
+        while (it.hasNext()) {
+            carsEntity.add(convert(it.next()));
+        }
+        Iterator<CarEntity> entityIterator=carsEntity.iterator();
+        while(entityIterator.hasNext()){
+            em.persist(entityIterator.next());
+            em.flush();
+        }
     }
 }

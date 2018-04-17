@@ -1,22 +1,23 @@
 package dto;
 
-import enums.Brand;
-import enums.Color;
-import enums.State;
+
+import generated.Brandgenerated;
+import generated.ColorGenerated;
+import generated.StateGenerated;
 
 import java.util.Date;
 
 public class Car {
     private int id;
     private String name;
-    private Brand brand;
+    private Brandgenerated brand;
     private String model;
-    private Color color;
+    private ColorGenerated color;
     private int price;
-    private State state;
+    private StateGenerated state;
     private Date registrationDate;
 
-    public Car(String name, Brand brand, String model, Color color, int price, State state, Date registrationDate) {
+    public Car(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate) {
         this.name = name;
         this.model = model;
         this.brand = brand;
@@ -50,19 +51,19 @@ public class Car {
         this.model = model;
     }
 
-    public Brand getBrand() {
+    public Brandgenerated getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    public void setBrand(Brandgenerated brand) {
         this.brand = brand;
     }
 
-    public Color getColor() {
+    public ColorGenerated getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(ColorGenerated color) {
         this.color = color;
     }
 
@@ -74,11 +75,11 @@ public class Car {
         this.price = price;
     }
 
-    public State getState() {
+    public StateGenerated getState() {
         return state;
     }
 
-    public void setCondition(State state) {
+    public void setCondition(StateGenerated state) {
         this.state = state;
     }
 

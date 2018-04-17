@@ -16,7 +16,7 @@
                 <xs:element name="color" type="ColorGenerated"/>
                 <xs:element name="price" type="xs:int"/>
                 <xs:element name="state" type="StateGenerated"/>
-                <xs:element name="reqistrationDate" type="xs:date"/>
+                <xs:element name="registrationDate" type="xs:date"/>
             </xs:sequence>
         </xs:complexType>
 

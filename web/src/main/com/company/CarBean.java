@@ -1,9 +1,9 @@
 package com.company;
 
 import dto.Car;
-import enums.Brand;
-import enums.Color;
-import enums.State;
+import generated.Brandgenerated;
+import generated.ColorGenerated;
+import generated.StateGenerated;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -19,10 +19,10 @@ public class CarBean {
     private int id;
     private String name;
     private String model;
-    private Brand brand;
-    private Color color;
+    private Brandgenerated brand;
+    private ColorGenerated color;
     private int price;
-    private State state;
+    private StateGenerated state;
     private Date registrationDate;
     private Car car;
     private List<Car> carList;
@@ -43,6 +43,10 @@ public class CarBean {
         return "carListings";
     }
 
+    public void importData() {
+        carService.importCars();
+    }
+
     public String getName() {
         return name;
     }
@@ -59,19 +63,19 @@ public class CarBean {
         this.model = model;
     }
 
-    public Brand getBrand() {
+    public Brandgenerated getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    public void setBrand(Brandgenerated brand) {
         this.brand = brand;
     }
 
-    public Color getColor() {
+    public ColorGenerated getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(ColorGenerated color) {
         this.color = color;
     }
 
@@ -83,11 +87,11 @@ public class CarBean {
         this.price = price;
     }
 
-    public State getState() {
+    public StateGenerated getState() {
         return state;
     }
 
-    public void setState(State state) {
+    public void setState(StateGenerated state) {
         this.state = state;
     }
 
