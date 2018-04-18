@@ -2,6 +2,7 @@ package dto;
 
 
 
+import enums.Status;
 import generated.Brandgenerated;
 import generated.ColorGenerated;
 import generated.StateGenerated;
@@ -17,6 +18,7 @@ public class Car {
     private int price;
     private StateGenerated state;
     private Date registrationDate;
+    private Status status;
 
     public Car(int id, String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate) {
         this.id = id;
@@ -31,12 +33,23 @@ public class Car {
 
     public Car(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate) {
         this.name = name;
+        this.brand = brand;
+        this.model = model;
+        this.color = color;
+        this.price = price;
+        this.state = state;
+        this.registrationDate = registrationDate;
+    }
+
+    public Car(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate, Status status) {
+        this.name = name;
         this.model = model;
         this.brand = brand;
         this.color = color;
         this.price = price;
         this.state = state;
         this.registrationDate = registrationDate;
+        this.status=status;
     }
 
     public int getId() {
@@ -101,6 +114,14 @@ public class Car {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
 

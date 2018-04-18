@@ -43,6 +43,7 @@ public class CarBean {
     }
 
     public void importData() {
+
         carService.importCars();
     }
 

@@ -1,5 +1,6 @@
 package entities;
 
+import enums.Status;
 import generated.Brandgenerated;
 import generated.ColorGenerated;
 import generated.StateGenerated;
@@ -16,6 +17,7 @@ public class CarEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
@@ -42,18 +44,11 @@ public class CarEntity {
     @Column(name = "registration_date")
     private Date registrationDate;
 
-    public CarEntity() {
-    }
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-    public CarEntity(int id, String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate) {
-        this.id = id;
-        this.name = name;
-        this.model = model;
-        this.brand = brand;
-        this.color = color;
-        this.price = price;
-        this.state = state;
-        this.registrationDate = registrationDate;
+    public CarEntity() {
     }
 
     public CarEntity(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate) {
@@ -64,6 +59,17 @@ public class CarEntity {
         this.price = price;
         this.state = state;
         this.registrationDate = registrationDate;
+    }
+
+    public CarEntity(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate, Status status) {
+        this.name = name;
+        this.model = model;
+        this.brand = brand;
+        this.color = color;
+        this.price = price;
+        this.state = state;
+        this.registrationDate = registrationDate;
+        this.status = status;
     }
 
     public int getId() {
@@ -130,4 +136,11 @@ public class CarEntity {
         this.registrationDate = registrationDate;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }

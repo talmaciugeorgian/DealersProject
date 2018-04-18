@@ -30,22 +30,15 @@ public class CarService implements CarServiceInterface {
     }
 
     public void importCars() {
+        carRepository.setInactive();
+
         try{
             File file=new File("C:\\dev\\workspace\\dealer_project\\commons\\src\\main\\resources\\pdi\\xml\\cars.xml");
             JAXBContext jaxbContext=JAXBContext.newInstance(Cars.class);
 
             Unmarshaller jaxbUnmarshaller=jaxbContext.createUnmarshaller();
             Cars cars= (Cars) jaxbUnmarshaller.unmarshal(file);
-
-            //conversion
-
-            List<Car> car = new ArrayList<Car>();
-            List<CarGenerated> temp_generatedCar=cars.getCar();
-            Iterator<CarGenerated> it = temp_generatedCar.iterator();
-            while (it.hasNext()) {
-                car.add(carRepository.convertImportToCar(it.next()));
-            }
-            carRepository.setCars(car);
+            carRepository.setCars(cars);
         }catch (JAXBException e) {
             e.printStackTrace();
         }

@@ -1,16 +1,22 @@
 package com.company;
 
+import conversion.DtoToEntity;
+import conversion.EntityToDto;
+import conversion.ImportToDto;
 import dto.Car;
 import entities.CarEntity;
+import enums.Status;
 import generated.CarGenerated;
+import generated.Cars;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import static conversion.DtoToEntity.*;
 
 @Stateless
 public class CarRepository implements CarRepositoryInterface {
@@ -18,64 +24,50 @@ public class CarRepository implements CarRepositoryInterface {
     @PersistenceContext(unitName = "myapp")
     private EntityManager em;
 
-    public java.util.Date asDate(XMLGregorianCalendar xgc) {
-        if (xgc == null) {
-            return null;
-        } else {
-            return xgc.toGregorianCalendar().getTime();
-        }
-    }
-
-    public Car convertImportToCar(CarGenerated car){
-        return new Car(car.getId(),car.getName(),car.getBrand(),car.getModel(),car.getColor(),car.getPrice(),car.getState(),asDate(car.getRegistrationDate()));
-    }
-
-    public CarEntity convert(Car car) {
-        return new CarEntity(car.getName(), car.getBrand(), car.getModel(), car.getColor(), car.getPrice(), car.getState(), car.getRegistrationDate());
-    }
-    public CarEntity converT(Car car) {
-        return new CarEntity(car.getId(),car.getName(), car.getBrand(), car.getModel(), car.getColor(), car.getPrice(), car.getState(), car.getRegistrationDate());
-    }
-
-    public Car converttoCar(CarEntity carEntity) {
-        return new Car(carEntity.getName(), carEntity.getBrand(), carEntity.getModel(), carEntity.getColor(), carEntity.getPrice(), carEntity.getState(), carEntity.getRegistrationDate());
-    }
-    public Car convertToCar(CarEntity carEntity) {
-        return new Car(carEntity.getId(),carEntity.getName(), carEntity.getBrand(), carEntity.getModel(), carEntity.getColor(), carEntity.getPrice(), carEntity.getState(), carEntity.getRegistrationDate());
-    }
-
-
-    public List<Car> convertDtoToCar(List<CarEntity> carEntity) {
-        List<Car> car = new ArrayList<Car>();
-        Iterator<CarEntity> it = carEntity.iterator();
-        while (it.hasNext()) {
-            car.add(convertToCar(it.next()));
-        }
-        return car;
-    }
-
+    //Insert Car into db
     public void setCar(Car car) {
-        CarEntity carDto = convert(car);
+        CarEntity carDto = DtoToEntity.convert(car);
         em.persist(carDto);
         em.flush();
     }
 
     public List<Car> getCar() {
-        List<CarEntity> carEntity = (List<CarEntity>) em.createNamedQuery("CarEntity.getCar", CarEntity.class).getResultList();
-        List<Car> car = convertDtoToCar(carEntity);
+        List<CarEntity> carEntity =  em.createNamedQuery("CarEntity.getCar", CarEntity.class).getResultList();
+        List<Car> car = EntityToDto.convertList(carEntity);
         return car;
     }
 
-    public void setCars(List<Car> cars){
-        List<CarEntity> carsEntity = new ArrayList<CarEntity>();
-        Iterator<Car> it = cars.iterator();
+    public void setCars(Cars cars) {
+        List<Car> car = new ArrayList<Car>();
+        List<CarGenerated> temp_generatedCar = cars.getCar();
+        Iterator<CarGenerated> it = temp_generatedCar.iterator();
         while (it.hasNext()) {
-            carsEntity.add(converT(it.next()));
+            car.add(ImportToDto.convertImportToCar(it.next()));
         }
-        Iterator<CarEntity> entityIterator=carsEntity.iterator();
-        while(entityIterator.hasNext()){
+
+        List<CarEntity> carsEntity = new ArrayList<CarEntity>();
+        Iterator<Car> carIterator = car.iterator();
+        while (carIterator.hasNext()) {
+            carsEntity.add(DtoToEntity.convert(carIterator.next()));
+        }
+
+        Iterator<CarEntity> entityIterator = carsEntity.iterator();
+        while (entityIterator.hasNext()) {
             em.persist(entityIterator.next());
             em.flush();
+        }
+    }
+
+    public void setInactive() {
+        List<CarEntity> carsEntity =  em.createQuery("Select c from CarEntity c where c.status=:status",CarEntity.class).setParameter("status",Status.ACTIVE).getResultList();
+//        Iterator<CarEntity> entityIterator = carsEntity.iterator();
+//        while (entityIterator.hasNext()) {
+//            entityIterator.next().setStatus(Status.INACTIVE);
+//            em.merge(entityIterator.);
+//        }
+        for (CarEntity c: carsEntity) {
+            c.setStatus(Status.INACTIVE);
+            em.merge(c);
         }
     }
 }

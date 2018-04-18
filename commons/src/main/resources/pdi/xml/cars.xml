@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Cars>
     <Car>
-        <id>12345</id>
         <name>testCar1</name>
         <brand>BMW</brand>
         <model>x3</model>
@@ -11,7 +10,6 @@
         <registrationDate>2016-02-22</registrationDate>
     </Car>
     <Car>
-        <id>12346</id>
         <name>testCar2</name>
         <brand>AUDI</brand>
         <model>q5</model>
@@ -21,7 +19,6 @@
         <registrationDate>2014-08-22</registrationDate>
     </Car>
     <Car>
-        <id>12347</id>
         <name>testCar3</name>
         <brand>SKODA</brand>
         <model>octavia</model>
