@@ -1,6 +1,5 @@
 package entities;
 
-import dto.Car;
 import generated.Brandgenerated;
 import generated.ColorGenerated;
 import generated.StateGenerated;
@@ -44,6 +43,17 @@ public class CarEntity {
     private Date registrationDate;
 
     public CarEntity() {
+    }
+
+    public CarEntity(int id, String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate) {
+        this.id = id;
+        this.name = name;
+        this.model = model;
+        this.brand = brand;
+        this.color = color;
+        this.price = price;
+        this.state = state;
+        this.registrationDate = registrationDate;
     }
 
     public CarEntity(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate) {

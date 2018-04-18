@@ -1,6 +1,7 @@
 package dto;
 
 
+
 import generated.Brandgenerated;
 import generated.ColorGenerated;
 import generated.StateGenerated;
@@ -16,6 +17,17 @@ public class Car {
     private int price;
     private StateGenerated state;
     private Date registrationDate;
+
+    public Car(int id, String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.model = model;
+        this.color = color;
+        this.price = price;
+        this.state = state;
+        this.registrationDate = registrationDate;
+    }
 
     public Car(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate) {
         this.name = name;

@@ -3,7 +3,6 @@ package com.company;
 import dto.Car;
 import entities.CarEntity;
 import generated.CarGenerated;
-import generated.Cars;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -28,22 +27,29 @@ public class CarRepository implements CarRepositoryInterface {
     }
 
     public Car convertImportToCar(CarGenerated car){
-        return new Car(car.getName(),car.getBrand(),car.getModel(),car.getColor(),car.getPrice(),car.getState(),asDate(car.getReqistrationDate()));
+        return new Car(car.getId(),car.getName(),car.getBrand(),car.getModel(),car.getColor(),car.getPrice(),car.getState(),asDate(car.getRegistrationDate()));
     }
 
     public CarEntity convert(Car car) {
         return new CarEntity(car.getName(), car.getBrand(), car.getModel(), car.getColor(), car.getPrice(), car.getState(), car.getRegistrationDate());
     }
+    public CarEntity converT(Car car) {
+        return new CarEntity(car.getId(),car.getName(), car.getBrand(), car.getModel(), car.getColor(), car.getPrice(), car.getState(), car.getRegistrationDate());
+    }
 
     public Car converttoCar(CarEntity carEntity) {
         return new Car(carEntity.getName(), carEntity.getBrand(), carEntity.getModel(), carEntity.getColor(), carEntity.getPrice(), carEntity.getState(), carEntity.getRegistrationDate());
     }
+    public Car convertToCar(CarEntity carEntity) {
+        return new Car(carEntity.getId(),carEntity.getName(), carEntity.getBrand(), carEntity.getModel(), carEntity.getColor(), carEntity.getPrice(), carEntity.getState(), carEntity.getRegistrationDate());
+    }
+
 
     public List<Car> convertDtoToCar(List<CarEntity> carEntity) {
         List<Car> car = new ArrayList<Car>();
         Iterator<CarEntity> it = carEntity.iterator();
         while (it.hasNext()) {
-            car.add(converttoCar(it.next()));
+            car.add(convertToCar(it.next()));
         }
         return car;
     }
@@ -64,7 +70,7 @@ public class CarRepository implements CarRepositoryInterface {
         List<CarEntity> carsEntity = new ArrayList<CarEntity>();
         Iterator<Car> it = cars.iterator();
         while (it.hasNext()) {
-            carsEntity.add(convert(it.next()));
+            carsEntity.add(converT(it.next()));
         }
         Iterator<CarEntity> entityIterator=carsEntity.iterator();
         while(entityIterator.hasNext()){

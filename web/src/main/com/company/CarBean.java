@@ -7,7 +7,6 @@ import generated.StateGenerated;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
 import java.util.Date;

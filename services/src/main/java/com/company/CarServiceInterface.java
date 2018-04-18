@@ -1,9 +1,7 @@
 package com.company;
 
 import dto.Car;
-import generated.Cars;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface CarServiceInterface {

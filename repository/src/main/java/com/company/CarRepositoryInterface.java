@@ -3,7 +3,6 @@ package com.company;
 import dto.Car;
 import generated.CarGenerated;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface CarRepositoryInterface {

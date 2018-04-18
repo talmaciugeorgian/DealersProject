@@ -31,7 +31,7 @@ public class CarService implements CarServiceInterface {
 
     public void importCars() {
         try{
-            File file=new File("C:\\dev\\workspace\\dealer_project\\commons\\src\\main\\resources\\schemas\\cars.xml");
+            File file=new File("C:\\dev\\workspace\\dealer_project\\commons\\src\\main\\resources\\pdi\\xml\\cars.xml");
             JAXBContext jaxbContext=JAXBContext.newInstance(Cars.class);
 
             Unmarshaller jaxbUnmarshaller=jaxbContext.createUnmarshaller();
