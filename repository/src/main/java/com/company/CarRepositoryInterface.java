@@ -11,4 +11,6 @@ public interface CarRepositoryInterface {
     public List<Car> getCar();
     public void setCars(Cars cars);
     public void setInactive();
+    public void deleteInactive();
+    public Cars getExportCars();
 }

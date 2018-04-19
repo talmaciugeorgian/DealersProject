@@ -9,4 +9,5 @@ public interface CarServiceInterface {
 
     public List<Car> checkCar();
     public void importCars();
+    public void exportCars();
 }

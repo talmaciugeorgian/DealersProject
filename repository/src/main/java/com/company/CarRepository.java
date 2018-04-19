@@ -1,6 +1,7 @@
 package com.company;
 
 import conversion.DtoToEntity;
+import conversion.DtoToImport;
 import conversion.EntityToDto;
 import conversion.ImportToDto;
 import dto.Car;
@@ -37,6 +38,23 @@ public class CarRepository implements CarRepositoryInterface {
         return car;
     }
 
+    public Cars getExportCars(){
+        List<CarEntity> carEntity =  em.createNamedQuery("CarEntity.getCar", CarEntity.class).getResultList();
+        List<Car> dtoCar = EntityToDto.convertList(carEntity);
+        Cars cars=new Cars();
+        List<CarGenerated> carGenerated=new ArrayList<CarGenerated>();
+        Iterator<Car> carIterator=dtoCar.iterator();
+        while (carIterator.hasNext()) {
+            carGenerated.add(DtoToImport.convert(carIterator.next()));
+        }
+        Iterator<CarGenerated> carGeneratedIterator=carGenerated.iterator();
+        while(carGeneratedIterator.hasNext()){
+            cars.getCar().add(carGeneratedIterator.next());
+        }
+
+        return cars;
+    }
+
     public void setCars(Cars cars) {
         List<Car> car = new ArrayList<Car>();
         List<CarGenerated> temp_generatedCar = cars.getCar();
@@ -68,6 +86,13 @@ public class CarRepository implements CarRepositoryInterface {
         for (CarEntity c: carsEntity) {
             c.setStatus(Status.INACTIVE);
             em.merge(c);
+        }
+    }
+
+    public void deleteInactive() {
+        List<CarEntity> carsEntity=em.createQuery("Select c from CarEntity c where c.status=:status",CarEntity.class).setParameter("status",Status.INACTIVE).getResultList();
+        for (CarEntity c: carsEntity) {
+            em.remove(c);
         }
     }
 }

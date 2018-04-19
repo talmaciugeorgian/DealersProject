@@ -21,6 +21,9 @@
             <p:commandButton value="Import data" update="grid" icon="ui-icon-check" ajax="false"
                              action="#{carBean.importData}"
                              validateClient="true" style="margin-right:10px"/>
+            <p:commandButton value="Export data" update="grid" icon="ui-icon-check" ajax="false"
+                             action="#{carBean.exportData}"
+                             validateClient="true" style="margin-right:10px"/>
             <p:commandButton value="Logout" update="grid" icon="ui-icon-check" ajax="false" action="login"
                              validateClient="true" style="margin-right:10px"/>
         </p:panel>

@@ -8,13 +8,14 @@ import generated.StateGenerated;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @ManagedBean(name = "carBean", eager = true)
 @SessionScoped
-public class CarBean {
+public class CarBean implements Serializable {
     private int id;
     private String name;
     private String model;
@@ -45,6 +46,10 @@ public class CarBean {
     public void importData() {
 
         carService.importCars();
+    }
+
+    public void exportData(){
+        carService.exportCars();
     }
 
     public String getName() {
