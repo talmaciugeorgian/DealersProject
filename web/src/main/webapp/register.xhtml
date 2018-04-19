@@ -10,10 +10,10 @@
     <title>login</title>
 </h:head>
 <h:body>
-    <h:form style="text-align:center">
+    <h:form>
         <p:panel header="Registration Form">
             <p:messages autoUpdate="true"/>
-            <h:panelGrid id="grid" columns="4" cellpadding="5" style="margin:0px auto">
+            <h:panelGrid id="grid" columns="4" cellpadding="5">
                 <p:outputLabel for="username" value="Username: "/>
                 <p:inputText id="username" value="#{registerBean.username}"/>
                 <p:message for="username"/>
@@ -40,7 +40,7 @@
                 <br/><br/>
             </h:panelGrid>
             <h3>Address</h3>
-            <h:panelGrid id="grid2" columns="4" cellpadding="5" style="margin:0px auto">
+            <h:panelGrid id="grid2" columns="4" cellpadding="5">
                 <p:outputLabel for="street" value="Street :"/>
                 <p:inputText id="street" value="#{registerBean.street}"/>
                 <p:message for="street"/>
@@ -60,7 +60,7 @@
             </h:panelGrid>
             <p:commandButton value="Register" update="grid" icon="ui-icon-check"
                              action="#{registerBean.validateUser}" validateClient="true" style="margin-right:10px"/>
-            <p:commandButton value="Back" update="grid" icon="ui-icon-check" ajax="false" action="login"
+            <p:commandButton value="Back" update="grid" icon="ui-icon-check" ajax="false" action="login" immediate="true"
                              validateClient="true" style="margin-right:10px"/>
         </p:panel>
 

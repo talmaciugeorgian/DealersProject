@@ -19,6 +19,7 @@ public class Car {
     private StateGenerated state;
     private Date registrationDate;
     private Status status;
+    private Date posted;
 
     public Car(int id, String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate) {
         this.id = id;
@@ -41,15 +42,27 @@ public class Car {
         this.registrationDate = registrationDate;
     }
 
-    public Car(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate, Status status) {
+    public Car(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate, Date posted) {
         this.name = name;
-        this.model = model;
         this.brand = brand;
+        this.model = model;
         this.color = color;
         this.price = price;
         this.state = state;
         this.registrationDate = registrationDate;
-        this.status=status;
+        this.posted = posted;
+    }
+
+    public Car(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate, Status status, Date posted) {
+        this.name = name;
+        this.brand = brand;
+        this.model = model;
+        this.color = color;
+        this.price = price;
+        this.state = state;
+        this.registrationDate = registrationDate;
+        this.status = status;
+        this.posted = posted;
     }
 
     public int getId() {
@@ -122,6 +135,14 @@ public class Car {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Date getPosted() {
+        return posted;
+    }
+
+    public void setPosted(Date posted) {
+        this.posted = posted;
     }
 }
 

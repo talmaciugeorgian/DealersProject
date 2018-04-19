@@ -19,7 +19,7 @@ public class UserRepository implements UserRepositoryInterface {
 
 
     public User convert(UsersEntity usersEntity) {
-        return new User(usersEntity.getId(), usersEntity.getUsername(), usersEntity.getPassword());
+        return new User(usersEntity.getUsername(), usersEntity.getPassword(),usersEntity.getUserType());
     }
 
     public User getUser(String username) {

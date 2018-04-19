@@ -4,6 +4,7 @@ import dto.Address;
 import dto.User;
 import entities.AddressEntity;
 import entities.UsersEntity;
+import enums.UserType;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,7 +22,7 @@ public class RegisterRepository implements RegisterRepositoryInterface {
 
     public UsersEntity convert(User user) {
         AddressEntity temp_address = convertAddr(user.getAddress());
-        return new UsersEntity(user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(), temp_address);
+        return new UsersEntity(user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(),UserType.USER, temp_address);
     }
 
     public void setUser(User user) {

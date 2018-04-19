@@ -10,23 +10,146 @@
     <title>User HomePage</title>
 </h:head>
 <h:body>
-    <h:form style="text-align:center">
-        <p:panel header="Welcome">
-            <p>Welcome</p>
-            <p:commandButton value="Create new sale" update="grid" icon="ui-icon-check" ajax="false" action="newCarPage"
-                             validateClient="true" style="margin-right:10px"/>
-            <p:commandButton value="Browse cars" update="grid" icon="ui-icon-check" ajax="false"
-                             action="#{carBean.getCarListings}"
-                             validateClient="true" style="margin-right:10px"/>
-            <p:commandButton value="Import data" update="grid" icon="ui-icon-check" ajax="false"
-                             action="#{carBean.importData}"
-                             validateClient="true" style="margin-right:10px"/>
-            <p:commandButton value="Export data" update="grid" icon="ui-icon-check" ajax="false"
-                             action="#{carBean.exportData}"
-                             validateClient="true" style="margin-right:10px"/>
-            <p:commandButton value="Logout" update="grid" icon="ui-icon-check" ajax="false" action="login"
-                             validateClient="true" style="margin-right:10px"/>
-        </p:panel>
+    <h:form>
+        <p:tabView>
+            <p:tab title="Home">
+                <h3>Hello, #{loginBean.username}</h3>
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:commandButton value="Logout" update="grid" icon="ui-icon-check" ajax="false" action="login"
+                                     validateClient="true" style="margin-right:10px"/>
+                </h:panelGrid>
+            </p:tab>
+            <p:tab title="New Sale">
+                <h:form style="text-align:center">
+
+                    <p:outputLabel for="name" value="Name : "/>
+                    <p:inputText id="name" value="#{carBean.name}"/>
+                    <p:message for="name"/>
+                    <br/><br/>
+
+                    <p:outputLabel for="brand" value="Brand : "/>
+                    <p:selectOneMenu id="brand" value="#{carBean.brand}">
+                        <f:selectItem itemLabel="AUDI" itemValue="AUDI"/>
+                        <f:selectItem itemLabel="VW" itemValue="VW"/>
+                        <f:selectItem itemLabel="BMW" itemValue="BMW"/>
+                        <f:selectItem itemLabel="PORCHE" itemValue="PORCHE"/>
+                        <f:selectItem itemLabel="FORD" itemValue="FORD"/>
+                        <f:selectItem itemLabel="KIA" itemValue="KIA"/>
+                        <f:selectItem itemLabel="SKODA" itemValue="SKODA"/>
+                        <f:selectItem itemLabel="JAGUAR" itemValue="JAGUAR"/>
+                    </p:selectOneMenu>
+                    <br/><br/>
+
+                    <p:outputLabel for="model" value="Model : "/>
+                    <p:inputText id="model" value="#{carBean.model}"/>
+                    <p:message for="model"/>
+                    <br/><br/>
+
+                    <p:outputLabel for="color" value="Color : "/>
+                    <p:selectOneMenu id="color" value="#{carBean.color}">
+                        <f:selectItem itemLabel="RED" itemValue="RED"/>
+                        <f:selectItem itemLabel="BLACK" itemValue="BLACK"/>
+                        <f:selectItem itemLabel="BLUE" itemValue="BLUE"/>
+                        <f:selectItem itemLabel="YELLOW" itemValue="YELLOW"/>
+                        <f:selectItem itemLabel="WHITE" itemValue="WHITE"/>
+                        <f:selectItem itemLabel="GREEN" itemValue="GREEN"/>
+                    </p:selectOneMenu>
+                    <br/><br/>
+
+                    <p:outputLabel for="price" value="Price : "/>
+                    <p:inputText id="price" value="#{carBean.price}"/>
+                    <p:message for="price"/>
+                    <br/><br/>
+
+                    <p:outputLabel for="state" value="Condition : "/>
+                    <p:selectOneMenu id="state" value="#{carBean.state}">
+                        <f:selectItem itemLabel="USED" itemValue="USED"/>
+                        <f:selectItem itemLabel="NEW" itemValue="NEW"/>
+                    </p:selectOneMenu>
+                    <br/><br/>
+
+                    <p:outputLabel for="date" value="Registration Date:" />
+                    <p:calendar id="date" value="#{carBean.registrationDate}" pattern="yyyy-MM-dd" mask="true" />
+                    <br/><br/>
+
+                    <p:commandButton value="Submit" update="grid" icon="ui-icon-check" ajax="false" action="#{carBean.addCar}"
+                                     validateClient="true" style="margin-right:10px"/>
+                </h:form>
+            </p:tab>
+            <p:tab title="Browse">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:commandButton value="Browse cars" update="grid" icon="ui-icon-check" ajax="false"
+                                     action="#{carBean.getCarListings}"
+                                     validateClient="true" style="margin-right:10px"/>
+                    <br/><br/>
+
+                    <p:dataTable rendered="#{carBean.hideTable}" var="car" value="#{carBean.carList}" widgetVar="carsTable"
+                                 emptyMessage="No cars found with given criteria" filteredValue="#{carBean.filteredCars}">
+
+                        <p:column filterBy="#{car.name}" headerText="Name" filterMatchMode="contains">
+                            <h:outputText value="#{car.name}"/>
+                        </p:column>
+                        <p:column filterBy="#{car.brand}" headerText="Brand" filterMatchMode="exact">
+                            <f:facet name="filter">
+                                <p:selectOneMenu onchange="PF('carsTable').filter()">
+                                    <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
+                                    <f:selectItems value="#{carBean.brands}"/>
+                                </p:selectOneMenu>
+                            </f:facet>
+                            <h:outputText value="#{car.brand}"/>
+                        </p:column>
+                        <p:column filterBy="#{car.model}" headerText="Model" filterMatchMode="contains">
+                            <h:outputText value="#{car.model}"/>
+                        </p:column>
+                        <p:column filterBy="#{car.color}" headerText="Color" filterMatchMode="exact">
+                            <f:facet name="filter">
+                                <p:selectOneMenu onchange="PF('carsTable').filter()">
+                                    <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
+                                    <f:selectItems value="#{carBean.colors}"/>
+                                </p:selectOneMenu>
+                            </f:facet>
+                            <h:outputText value="#{car.color}"/>
+                        </p:column>
+                        <p:column filterBy="#{car.price}" headerText="Price" filterMatchMode="contains">
+                            <h:outputText value="#{car.price}">
+                                <f:convertNumber currencySymbol="$" type="currency"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column filterBy="#{car.state}" headerText="State" filterMatchMode="exact">
+                            <f:facet name="filter">
+                                <p:selectOneMenu onchange="PF('carsTable').filter()">
+                                    <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
+                                    <f:selectItems value="#{carBean.states}"/>
+                                </p:selectOneMenu>
+                            </f:facet>
+                            <h:outputText value="#{car.state}"/>
+                        </p:column>
+                        <p:column filterBy="#{car.registrationDate}" headerText="RegistrationDate" filterMatchMode="contains">
+                            <h:outputText value="#{car.registrationDate}"/>
+                        </p:column>
+                        <p:column filterBy="#{car.posted}" headerText="Posted" filterMatchMode="contains">
+                            <h:outputText value="#{car.posted}"/>
+                        </p:column>
+                    </p:dataTable>
+
+
+
+                </h:panelGrid>
+            </p:tab>
+            <p:tab title="Import \ Export" rendered="#{loginBean.admin}">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:commandButton rendered="#{loginBean.admin}" value="Import data" update="grid"
+                                     icon="ui-icon-check" ajax="false"
+                                     action="#{carBean.importData}"
+                                     validateClient="true" style="margin-right:10px"/>
+                    <br/><br/>
+                    <p:commandButton rendered="#{loginBean.admin}" value="Export data" update="grid"
+                                     icon="ui-icon-check" ajax="false"
+                                     action="#{carBean.exportData}"
+                                     validateClient="true" style="margin-right:10px"/>
+                </h:panelGrid>
+            </p:tab>
+        </p:tabView>
     </h:form>
 </h:body>
 

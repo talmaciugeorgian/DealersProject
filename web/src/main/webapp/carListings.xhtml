@@ -11,50 +11,57 @@
 </h:head>
 <h:body>
     <h:form>
-        <p:panel header="Listings">
-            <p>Welcome</p>
+        <h2 style="text-align:center">Listings</h2>
+        <p:dataTable var="car" value="#{carBean.carList}" widgetVar="carsTable"
+                     emptyMessage="No cars found with given criteria" filteredValue="#{carBean.filteredCars}">
 
-            <h:dataTable value="#{carBean.carList}" var="car" border="1">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="CarName"/>
-                    </f:facet>
-                    #{car.name}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Brand
-                    </f:facet>
-                    <h:outputText value="#{car.brand}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Model"/>
-                    </f:facet>
-                    <h:outputText value="#{car.model}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Color"/>
-                    </f:facet>
-                    #{car.color}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Price"/>
-                    </f:facet>
-                    #{car.price}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="RegistrationDate"/>
-                    </f:facet>
-                    #{car.registrationDate}
-                </h:column>
-            </h:dataTable>
-
-            <p:commandButton value="Back" update="grid" icon="ui-icon-check" ajax="false" action="userHomePage"
-                             validateClient="true" style="margin-right:10px"/>
-        </p:panel>
+            <p:column filterBy="#{car.name}" headerText="Name" filterMatchMode="contains">
+                <h:outputText value="#{car.name}"/>
+            </p:column>
+            <p:column filterBy="#{car.brand}" headerText="Brand" filterMatchMode="exact">
+                <f:facet name="filter">
+                    <p:selectOneMenu onchange="PF('carsTable').filter()">
+                        <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
+                        <f:selectItems value="#{carBean.brands}"/>
+                    </p:selectOneMenu>
+                </f:facet>
+                <h:outputText value="#{car.brand}"/>
+            </p:column>
+            <p:column filterBy="#{car.model}" headerText="Model" filterMatchMode="contains">
+                <h:outputText value="#{car.model}"/>
+            </p:column>
+            <p:column filterBy="#{car.color}" headerText="Color" filterMatchMode="exact">
+                <f:facet name="filter">
+                    <p:selectOneMenu onchange="PF('carsTable').filter()">
+                        <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
+                        <f:selectItems value="#{carBean.colors}"/>
+                    </p:selectOneMenu>
+                </f:facet>
+                <h:outputText value="#{car.color}"/>
+            </p:column>
+            <p:column filterBy="#{car.price}" headerText="Price" filterMatchMode="contains">
+                <h:outputText value="#{car.price}">
+                    <f:convertNumber currencySymbol="$" type="currency"/>
+                </h:outputText>
+            </p:column>
+            <p:column filterBy="#{car.state}" headerText="State" filterMatchMode="exact">
+                <f:facet name="filter">
+                    <p:selectOneMenu onchange="PF('carsTable').filter()">
+                        <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"/>
+                        <f:selectItems value="#{carBean.states}"/>
+                    </p:selectOneMenu>
+                </f:facet>
+                <h:outputText value="#{car.state}"/>
+            </p:column>
+            <p:column filterBy="#{car.registrationDate}" headerText="RegistrationDate" filterMatchMode="contains">
+                <h:outputText value="#{car.registrationDate}"/>
+            </p:column>
+            <p:column filterBy="#{car.posted}" headerText="Posted" filterMatchMode="contains">
+                <h:outputText value="#{car.posted}"/>
+            </p:column>
+        </p:dataTable>
+        <p:commandButton value="Back" update="grid" icon="ui-icon-check" ajax="false" action="userHomePage"
+                         validateClient="true" style="margin-right:10px"/>
     </h:form>
 </h:body>
 

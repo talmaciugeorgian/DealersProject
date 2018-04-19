@@ -4,13 +4,14 @@ import dto.Car;
 import entities.CarEntity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 public class EntityToDto {
     //CarEntity ->Car.dto
     public static Car convert(CarEntity carEntity) {
-        return new Car(carEntity.getName(), carEntity.getBrand(), carEntity.getModel(), carEntity.getColor(), carEntity.getPrice(), carEntity.getState(), carEntity.getRegistrationDate());
+        return new Car(carEntity.getName(), carEntity.getBrand(), carEntity.getModel(), carEntity.getColor(), carEntity.getPrice(), carEntity.getState(), carEntity.getRegistrationDate(),new Date());
     }
 
     //<list>CarEntity -> <list>Car

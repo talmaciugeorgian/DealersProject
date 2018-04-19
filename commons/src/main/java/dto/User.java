@@ -1,5 +1,7 @@
 package dto;
 
+import enums.UserType;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -10,11 +12,12 @@ public class User implements Serializable {
     private String lastName;
     private String email;
     private Address address;
+    private UserType userType;
 
-    public User(int id, String username, String password) {
-        this.id = id;
+    public User(String username, String password, UserType userType) {
         this.username = username;
         this.password = password;
+        this.userType = userType;
     }
 
     public User(String username, String password, String firstName, String lastName, String email, Address address) {
@@ -80,5 +83,13 @@ public class User implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }

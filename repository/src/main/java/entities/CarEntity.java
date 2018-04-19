@@ -23,12 +23,12 @@ public class CarEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "model")
-    private String model;
-
     @Column(name = "brand")
     @Enumerated(EnumType.STRING)
     private Brandgenerated brand;
+
+    @Column(name = "model")
+    private String model;
 
     @Column(name = "color")
     @Enumerated(EnumType.STRING)
@@ -48,6 +48,9 @@ public class CarEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column(name="posted")
+    private Date posted;
+
     public CarEntity() {
     }
 
@@ -61,15 +64,16 @@ public class CarEntity {
         this.registrationDate = registrationDate;
     }
 
-    public CarEntity(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate, Status status) {
+    public CarEntity(String name, Brandgenerated brand, String model, ColorGenerated color, int price, StateGenerated state, Date registrationDate, Status status, Date posted) {
         this.name = name;
-        this.model = model;
         this.brand = brand;
+        this.model = model;
         this.color = color;
         this.price = price;
         this.state = state;
         this.registrationDate = registrationDate;
         this.status = status;
+        this.posted = posted;
     }
 
     public int getId() {
@@ -142,5 +146,13 @@ public class CarEntity {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Date getPosted() {
+        return posted;
+    }
+
+    public void setPosted(Date posted) {
+        this.posted = posted;
     }
 }
