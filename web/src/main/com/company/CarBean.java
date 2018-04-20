@@ -60,7 +60,6 @@ public class CarBean implements Serializable {
     }
 
     public void importData() {
-
         carService.importCars();
     }
 

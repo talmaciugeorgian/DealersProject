@@ -1,30 +1,32 @@
 package com.company;
 
+import conversion.EntityToDto;
 import dto.User;
 import entities.UsersEntity;
+import enums.AccountType;
 
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.*;
+import java.util.List;
 
 @Stateless
 public class UserRepository implements UserRepositoryInterface {
 
     @PersistenceContext(unitName = "myapp")
+
     private EntityManager em;
 
-
-    public User convert(UsersEntity usersEntity) {
-        return new User(usersEntity.getUsername(), usersEntity.getPassword(),usersEntity.getUserType());
+    public List<User> getUser(String username){
+        List<UsersEntity> user = (List<UsersEntity>) em.createNamedQuery("UsersEntity.getUsername").setParameter("name", username).getResultList();
+        List<User> userDto = EntityToDto.convertUsersList(user);
+        return userDto;
     }
 
-    public User getUser(String username) {
+    public void activateUser(String username) {
         UsersEntity user = (UsersEntity) em.createNamedQuery("UsersEntity.getUsername").setParameter("name", username).getSingleResult();
-        User userDto = convert(user);
-        return userDto;
+        user.setAccountType(AccountType.ACTIVE);
+        em.merge(user);
     }
 }

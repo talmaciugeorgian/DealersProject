@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Cars>
     <Car>
+        <name>mycar</name>
+        <brand>KIA</brand>
+        <model>sportage</model>
+        <color>BLUE</color>
+        <price>30000</price>
+        <state>NEW</state>
+        <registrationDate>2018-01-21</registrationDate>
+    </Car>
+    <Car>
         <name>testCar1</name>
         <brand>BMW</brand>
         <model>x3</model>

@@ -3,13 +3,16 @@ package com.company;
 
 import dto.Address;
 import dto.User;
+import enums.AccountType;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "registerBean", eager = true)
-@RequestScoped
+@SessionScoped
 public class RegisterBean {
     private String username;
     private String password;
@@ -36,11 +39,13 @@ public class RegisterBean {
         //      return "failed";
         // }else {
         address = new Address(street, postal_code, city, phone);
-        user = new User(username, password, firstName, lastName, email, address);
+        user = new User(username, password, firstName, lastName, email, address,AccountType.INACTIVE);
         registerService.createUser(user);
+
         return "redirectPage";
         //   }
     }
+
 
     public String getUsername() {
         return username;
@@ -113,4 +118,5 @@ public class RegisterBean {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }

@@ -7,6 +7,10 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 @Stateless
 public class UserService implements UserInterface {
@@ -25,8 +29,16 @@ public class UserService implements UserInterface {
         return result;
     }
 
-    public User checkUser(String username) {
-        User temp_user = userRepository.getUser(username);
-        return temp_user;
+    public User checkUser(String username) throws  NoSuchElementException{
+        List<User> temp_user = userRepository.getUser(username);
+        try{
+            return temp_user.iterator().next();
+        }catch (NoSuchElementException e){
+            return null;
+        }
+    }
+
+    public void activateUser(String username) {
+        userRepository.activateUser(username);
     }
 }

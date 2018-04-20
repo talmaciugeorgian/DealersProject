@@ -1,6 +1,7 @@
 package entities;
 
 import dto.Address;
+import enums.AccountType;
 import enums.UserType;
 
 import javax.persistence.*;
@@ -36,6 +37,10 @@ public class UsersEntity {
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
+    @Column(name="accountType")
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address")
     private AddressEntity address;
@@ -52,7 +57,7 @@ public class UsersEntity {
         this.address = address;
     }
 
-    public UsersEntity(String username, String password, String firstName, String lastName, String email, UserType userType, AddressEntity address) {
+    public UsersEntity(String username, String password, String firstName, String lastName, String email, UserType userType,AccountType accountType, AddressEntity address) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -60,6 +65,7 @@ public class UsersEntity {
         this.email = email;
         this.userType = userType;
         this.address = address;
+        this.accountType=accountType;
     }
 
     public UserType getUserType() {
@@ -125,5 +131,13 @@ public class UsersEntity {
 
     public void setAddress(AddressEntity address) {
         this.address = address;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 }
