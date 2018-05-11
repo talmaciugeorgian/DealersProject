@@ -18,6 +18,7 @@ public class EntityToImport {
         while (carIterator.hasNext()) {
             carGenerated.add(DtoToImport.convert(carIterator.next()));
         }
+
         Iterator<CarGenerated> carGeneratedIterator=carGenerated.iterator();
         while(carGeneratedIterator.hasNext()){
             cars.getCar().add(carGeneratedIterator.next());
