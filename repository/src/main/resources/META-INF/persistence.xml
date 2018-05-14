@@ -16,6 +16,9 @@
                       value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE" />
             <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.show_sql" value="true" />
+            <property name="openjpa.QueryCache" value="ehcache" />
+            <property name="openjpa.RemoteCommitProvider" value="sjvm"/>
+            <property name="openjpa.DataCacheManager" value="ehcache" />
         </properties>
     </persistence-unit>
 </persistence>

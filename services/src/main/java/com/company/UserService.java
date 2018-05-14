@@ -5,6 +5,7 @@ import dto.User;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.persistence.NoResultException;
@@ -28,14 +29,15 @@ public class UserService implements UserInterface {
         }
         return result;
     }
-
-    public User checkUser(String username) throws  NoSuchElementException{
-        List<User> temp_user = userRepository.getUser(username);
-        try{
-            return temp_user.iterator().next();
-        }catch (NoSuchElementException e){
-            return null;
-        }
+    @Interceptors(MyInterceptor.class)
+    public User checkUser(User user) throws  NoSuchElementException{
+        //List<User> temp_user = userRepository.getUser(user.getUsername());
+       // try{
+         //   return temp_user.iterator().next();
+        //}catch (NoSuchElementException e){
+       //     return null;
+       // }
+        return user;
     }
 
     public void activateUser(String username) {

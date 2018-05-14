@@ -24,7 +24,7 @@
                 <br/><br/>
             </h:panelGrid>
             <p:commandButton value="Login" update="grid" icon="ui-icon-check"
-                             action="#{loginBean.validateUsernamePassword}" validateClient="true"
+                             action="#{loginBean.validateUsernamePassword(loginBean.user)}" validateClient="true"
                              style="margin-right:10px"/>
             <p:commandButton value="Register" update="grid" icon="ui-icon-check" ajax="false" action="register"
                              validateClient="true" style="margin-right:10px"/>

@@ -7,6 +7,6 @@ import javax.persistence.NoResultException;
 
 @Local
 public interface UserInterface {
-    public User checkUser(String username);
+    public User checkUser(User user);
     public void activateUser(String username);
 }

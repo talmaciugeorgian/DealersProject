@@ -8,6 +8,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.interceptor.Interceptors;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,8 +32,10 @@ public class LoginBean {
     @EJB
     private UserInterface userService;
 
-    public String validateUsernamePassword(){
-        user = userService.checkUser(username);
+    @Interceptors(MyInterceptor.class)
+    public String validateUsernamePassword(User user){
+        User checkUser=new User(username,password,UserType.USER);
+        user=userService.checkUser(checkUser);
         if (user == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Incorrect Username and Password", "Please enter correct username and Password "));
             return "login";
